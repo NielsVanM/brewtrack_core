@@ -1,2 +1,2 @@
-# brewtrack_core
-Server core for BrewTrack
+# Brewtrack Core
+NestJS microservice backend for the brewtrack platform
