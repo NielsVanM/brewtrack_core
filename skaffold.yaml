@@ -6,17 +6,26 @@ metadata:
 build:
   artifacts:
   - image: nielsvanm/brewtrack_core_auth
-    context: apps/auth_service
+    context: ./
     docker:
-      dockerfile: dev.Dockerfile
+      dockerfile: ./apps/auth_service/dev.Dockerfile
     sync:
       manual:
         - src: "apps/auth_service/src/*"
           dest: "."
   
+  - image: nielsvanm/brewtrack_core_api_gate
+    context: ./
+    docker:
+      dockerfile: ./apps/api_gate/dev.Dockerfile
+    sync:
+      manual:
+        - src: "apps/api_gate/src/*"
+          dest: "."
 
 deploy:
   kubectl:
     manifests:
+    - infra/k8s/api-gate-depl.yaml
     - infra/k8s/auth-depl.yaml
     - infra/k8s/ingress-depl.yaml

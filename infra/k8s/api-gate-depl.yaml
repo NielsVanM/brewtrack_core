@@ -1,35 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth
+  name: api-gate
 
 spec:
   replicas: 1
 
   selector:
     matchLabels:
-      app: auth
+      app: api-gate
 
   template:
     metadata:
       labels:
-        app: auth
+        app: api-gate
     spec:
       containers:
-        - name: auth
-          image: nielsvanm/brewtrack_core_auth
+        - name: api-gate
+          image: nielsvanm/brewtrack_core_api_gate
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-service
+  name: api-gate-service
 
 spec:
   selector:
-    app: auth
+    app: api-gate
   ports:
-    - name: auth
+    - name: api-gate
       protocol: TCP
       port: 3000
       targetPort: 3000

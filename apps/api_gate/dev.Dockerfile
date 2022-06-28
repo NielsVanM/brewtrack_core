@@ -3,4 +3,4 @@ WORKDIR /usr/src/app
 COPY ./package.json ./package.json
 RUN npm install
 COPY ./ .
-CMD [ "npm", "run", "start:dev", "auth_service" ]
+CMD [ "npm", "run", "start:dev", "api_gate" ]
