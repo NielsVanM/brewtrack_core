@@ -1,0 +1,22 @@
+apiVersion: skaffold/v2beta29
+kind: Config
+metadata:
+  name: brewtrack-core
+
+build:
+  artifacts:
+  - image: nielsvanm/brewtrack_core_auth
+    context: apps/auth_service
+    docker:
+      dockerfile: dev.Dockerfile
+    sync:
+      manual:
+        - src: "apps/auth_service/src/*"
+          dest: "."
+  
+
+deploy:
+  kubectl:
+    manifests:
+    - infra/k8s/auth-depl.yaml
+    - infra/k8s/ingress-depl.yaml
